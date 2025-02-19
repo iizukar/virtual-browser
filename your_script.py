@@ -1,10 +1,8 @@
-import pytest
 import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 
 class TestFraud:
@@ -14,8 +12,8 @@ class TestFraud:
         options.add_argument("--no-sandbox")    # Required for server environments
         options.add_argument("--disable-dev-shm-usage")  # Avoids memory issues
 
-        # Use Service to specify the ChromeDriver path
-        service = Service(ChromeDriverManager().install())
+        # Specify the path to the ChromeDriver binary
+        service = Service("/usr/local/bin/chromedriver-linux64/chromedriver")
         self.driver = webdriver.Chrome(service=service, options=options)
         self.vars = {}
 
