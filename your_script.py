@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service
 
 class TestFraud:
     def setup_method(self, method):
@@ -12,7 +13,10 @@ class TestFraud:
         options.add_argument("--headless=new")  # Modern headless mode
         options.add_argument("--no-sandbox")    # Required for server environments
         options.add_argument("--disable-dev-shm-usage")  # Avoids memory issues
-        self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+
+        # Use Service to specify the ChromeDriver path
+        service = Service(ChromeDriverManager().install())
+        self.driver = webdriver.Chrome(service=service, options=options)
         self.vars = {}
 
     def teardown_method(self, method):
