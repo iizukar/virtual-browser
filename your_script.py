@@ -12,8 +12,9 @@ class TestFraud:
         options.add_argument("--no-sandbox")    # Required for server environments
         options.add_argument("--disable-dev-shm-usage")  # Avoids memory issues
 
-        # Specify the path to the ChromeDriver binary
-        service = Service("/usr/local/bin/chromedriver-linux64/chromedriver")
+        # Use Chromium instead of Chrome
+        options.binary_location = "/usr/bin/chromium"
+        service = Service("/usr/bin/chromedriver")
         self.driver = webdriver.Chrome(service=service, options=options)
         self.vars = {}
 
