@@ -11,6 +11,9 @@ RUN apt-get update && apt-get install -y wget gnupg2 \
 # Set the working directory
 WORKDIR /app
 
+# Upgrade pip
+RUN pip install --upgrade pip
+
 # Copy the requirements file and install dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
